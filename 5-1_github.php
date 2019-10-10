@@ -62,6 +62,7 @@
 		$stmt = $pdo->prepare($sql);
 		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
+		//入力したパスと設定したパスが一致しないとき
 		}elseif($delpass !== $pass){
 		echo "<font color=\"red\">注意：パスワードが間違っています</font>";
 		}
@@ -83,12 +84,13 @@ if(!empty($_POST["edit"])&&!empty($_POST["editpass"])){
 	$editname = $row['name'];
 	$editcomment = $row['comment'];
 	$edit =$row['id'];
+		//パスワードが一致しないとき
 		if($pass !== $editpass){
 			$editname="";
 			$editcomment="";
 		echo "<font color=\"red\">注意：パスワードが間違っています</font>";
 		}
-		//名前とコメントを表示
+		//パスワードが一致したとき、名前とコメントを表示
 		elseif($pass == $editpass){
 			$editname=$row['name'];
 			$editcomment=$row['comment'];			
